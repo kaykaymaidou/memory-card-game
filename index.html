@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="d-flex flex-row justify-content-center py-3 bar">
+        <div class="turns p-3">
+          <span class="btn btn-dark">Turns : <span class="badge" :class="complete ? 'badge-success' : 'badge-light'" >{{turns}}</span ></span>
+        </div>
+        <div class="total-time p-3">
+          <span class="btn btn-primary" >Total Time : <span class="badge" :class="complete ? 'badge-success' : 'badge-light'">{{minutes}} : {{seconds}}</span></span>
+        </div>
+        <div class="restart-button p-3">
+          <button class="btn btn-warning" @click="reset" :disabled="!start">Restart</button>
+        </div>
+      </div>
+      <div class="row" style="margin: 0;">
+        <div class="col-md-6 col-lg-6 col-xl-5 mx-auto">
+          <div class="row justify-content-center">
+            <div v-for="card in memoryCards" class="col-auto mb-3 flip-container" :class="{ 'flipped': card.isFlipped, 'matched' : card.isMatched }" @click="flipCard(card)">
+              <div class="memory-card">
+                <div class="front border rounded shadow">
+                  <img class="card" width="100" height="150" src="./images/card_bg.png" />
+                </div>
+                <div class="back border rounded shadow">
+                  <img class="card" width="100" height="150" :src="`./images/${card.img}`" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

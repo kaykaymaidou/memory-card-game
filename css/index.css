@@ -1,0 +1,50 @@
+.bar {
+  align-items: center;
+}
+
+.flip-container {
+  /* 设置从何处查看一个元素的角度 */
+  perspective: 1000px;
+  min-height: 120px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.flip-container .memory-card {
+  position: relative;
+}
+
+.front, .back {
+  /* 隐藏旋转 div 元素的背面 */
+  backface-visibility: hidden;
+  /* 动画过渡持续时间 */
+  transition: 0.6s;
+  /* 让转换的子元素保留3D转换 */
+  transform-style: preserve-3d;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.back {
+  transform: rotateY(-180deg);
+  position: absolute;
+}
+
+.back>.card {
+  height: 100%;
+  padding: 25px 0;
+}
+
+.flip-container.flipped .back {
+  transform: rotateY(0deg);
+}
+
+.flip-container.flipped .front {
+  transform: rotateY(180deg);
+}
+
+.matched {
+  opacity: 0.3;
+}
